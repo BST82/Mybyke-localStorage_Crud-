@@ -1,0 +1,90 @@
+<div class="container-fluid mt-5" >
+
+
+    <div class="row p-5">
+
+      <div [className]="sidePanelVisibility? 'col  m-3' : 'col-12  m-3' " >
+        <div class="row ">
+            <div class="col p-2 h1">
+              Bike List 
+            </div>
+            <div class="col p-2">
+              <button  type="button" class="btn btn-warning float-end" (click)="sidePanelVisibility=true">Add New</button>
+            </div>
+          </div>
+
+          <div class="row p-2">
+            <table class="table table-bordered border-primary">
+                <thead>
+                  <tr>
+                    <th>Sr No</th>
+                    <th>Bike</th>
+                    <th>Per hour</th>
+                    <th>Per day</th>
+                    <th>Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of bikeList; track item.bikeId + '-' + sr; let sr = $index) {
+                    <tr>
+                        <td>{{sr+1}}</td>
+                        <td>{{item.bikeName}}</td> 
+                        <td>{{item.ratePerHour}}</td>
+                        <td>{{item.ratePerDay}}</td>
+                        <td>
+                            <img [src]="item.bikeImage" style="width: 50px;height: 50px;"/>
+                        </td>
+                    </tr>
+                }
+                
+              </tbody>
+              </table>
+          </div>
+      </div>
+
+
+      @if (sidePanelVisibility) {
+        <div class="col m-3" >
+            <div class="row ">
+                <div class="col p-2 h1" >
+                  New Bike
+                </div>
+                <div class="col p-2">
+                 <button type="button" class="btn btn-danger float-end" (click)="sidePanelVisibility=false">Close</button>
+                </div>
+              </div>
+    
+              <div class="row p-1">
+                <div class="col">
+                    <label for="floatingInput">Bike Name</label>
+                    <input type="text" [(ngModel)]="bikeObj.bikeName" class="form-control"  >
+                </div>
+                <div class="col">
+                    <label for="floatingInput">Image</label>
+                    <input type="text" class="form-control"  [(ngModel)]="bikeObj.bikeImage">
+                </div>
+              </div>
+              <div class="row p-1">
+                <div class="col">
+                    <label for="floatingInput">Per Hour rate</label>
+                    <input type="text" class="form-control"   [(ngModel)]="bikeObj.ratePerHour">
+                </div>
+                <div class="col">
+                    <label for="floatingInput">Per Day rate</label>
+                    <input type="text" class="form-control"  [(ngModel)]="bikeObj.ratePerDay">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-secondary" (click)="onResetbike()">Reset</button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-info" (click)="onSaveBike()">Save</button>
+                </div>
+              </div>
+              
+          </div> 
+      }
+     
+    </div>
+</div>

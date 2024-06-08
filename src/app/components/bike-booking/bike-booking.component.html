@@ -1,0 +1,116 @@
+
+
+<div class="container-fluid mt-5 " >
+
+
+    <div class="row">
+      <div [className]="isSidePanelVisible? 'col  m-3 p-5' : 'col-12  m-3 p-5' " >
+        <div class="row ">
+         
+            <div class="col p-2 h1">
+              Bike List 
+            </div>
+            <div class="col p-2">
+              <button  type="button" class="btn btn-warning float-end btn-lg" (click)="isSidePanelVisible=true">Add New</button>
+            </div>
+          </div>
+
+          <div class="row p-5">
+            <table class="table table-bordered border-primary">
+                <thead>
+                  <tr>
+                    <th>Sr No</th>
+                    <th>Customer Name</th>
+                    <th>Bike Name</th>
+                    <th>Mobile Number</th>
+                    <th>Rent Type</th>
+                    <th>Rent Duration</th>
+                    <th>Number Of Bikes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @for (item of bookingList; track item.bookingId || $index; let sr = $index) {
+                    <tr>
+                        <td>{{sr+1}}</td>
+                        <td>{{item.customerName}}</td>
+                        <td>{{item.bikeName}}</td>
+                        <td>{{item.mobileNumber}}</td>
+                        <td>{{item.rentType}}</td>
+                        <td>{{item.rentDuration}}</td>
+                        <td>{{item.numberOfBike}}</td>
+                    </tr>
+                }
+                </tbody>
+              </table>
+          </div>
+      </div>
+
+
+      @if (isSidePanelVisible) {
+        <div class="col  m-3" >
+            <div class="row ">
+                <div class="col p-2 h1 pt-5" >
+                  New Bike
+                </div>
+                <div class="col p-2 pt-5">
+                 <button type="button" class="btn btn-danger float-end btn-lg" (click)="isSidePanelVisible=false">Close</button>
+                </div>
+              </div>
+    
+              <div class="row p-3">
+                <div class="col">
+                  <label for="floatingInput">Customer Name</label>
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="bikeImage" [(ngModel)]="bookingObj.customerName">
+              </div>
+                <div class="col">
+                    <label >Select Bike</label>
+                    <select  class="form-select" [(ngModel)]="bookingObj.bikeId">
+                      @for (item of BikeList; track $index) {
+                          <option [value]="item.bikeId"> {{item.bikeName}}</option>
+                      }
+                  </select>
+                </div>
+               
+                <div class="col">
+                    <label for="floatingInput">Mobile Number</label>
+                    <input type="text" maxlength="10" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ratePerDay" [(ngModel)]="bookingObj.mobileNumber">
+                </div>
+              </div>
+              <div class="row p-3">
+                <div class="col">
+                    <label for="floatingInput">Booking Date</label>
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ratePerHour" [(ngModel)]="bookingObj.bookingDate">
+                </div>
+                <div class="col">
+                    <label for="floatingInput">Rent Type</label>
+                    <select class="form-select" [(ngModel)]="bookingObj.rentType">
+                       <option value="">Select</option>
+                       <option value="Per Day">Per Day</option>
+                       <option value="Per Hour">Per Hour</option>
+                    </select>
+                </div>
+              </div>
+              <div class="row p-3">
+                <div class="col">
+                    <label for="floatingInput">Rent Duration</label>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"  [(ngModel)]="bookingObj.rentDuration">
+                </div>
+                <div class="col">
+                    <label for="floatingInput">Number Of Bikes </label>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ratePerDay" [(ngModel)]="bookingObj.numberOfBike">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-secondary" (click)="onReset()">Reset</button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-info " (click)="onBookingSave()">Save</button>
+                </div>
+              </div>
+              
+          </div> 
+      }
+     
+    </div>
+</div>
