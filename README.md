@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Leveraging Angular to Manipulate and Store Data in Local Storage
+
+Angular is a powerful and versatile front-end framework developed and maintained by Google. It allows developers to create dynamic, single-page applications (SPAs) with a robust structure. One common use case in web applications is the need to store data locally on the user's browser. This can be efficiently achieved using the localStorage API, which provides a way to store key-value pairs in a web browser with no expiration time. In this guide, we'll explore how to leverage Angular to manipulate and store data in local storage.
